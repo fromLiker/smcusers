@@ -3,7 +3,7 @@ spring:
     name: SMC-Users
 
   mail: # JavaMailSender config
-    # maillink: http://localhost:8088/securityuser/api/smc/users/confirmed/
+    # maillink: http://localhost:8888/securityuser/api/smc/users/confirmed/
     host: smtp.163.com
     port: 465 # mailSenderServer：smtp.163.com，use SSL，prot 465 or 587
     username: liker007@163.com
@@ -36,7 +36,7 @@ spring:
   profiles: dev
 
   mail: # JavaMailSender config
-    maillink: http://localhost:8088/securityuser/confirmed/
+    maillink: http://localhost:8888/smcuser/confirmed/
     loginlink: http://localhost:4200/login
 
   #数据库连接配置
@@ -72,7 +72,7 @@ spring:
   profiles: prod
 
   mail: # JavaMailSender config
-    maillink: http://106.54.194.33:8088/securityuser/confirmed/
+    maillink: http://106.54.194.33:8888/smcuser/confirmed/
     loginlink: http://106.54.194.33:4200/login
 
   #数据库连接配置
@@ -83,7 +83,7 @@ spring:
     password: admin
     
 server:
-  port: 8089
+  port: 8751
 
 # a日志设置配置信息
 logging:
