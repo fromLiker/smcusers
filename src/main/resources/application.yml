@@ -1,0 +1,104 @@
+spring:  
+  application:
+    name: SMC-Users
+
+  mail: # JavaMailSender config
+    # maillink: http://localhost:8088/securityuser/api/smc/users/confirmed/
+    host: smtp.163.com
+    port: 465 # mailSenderServer：smtp.163.com，use SSL，prot 465 or 587
+    username: liker007@163.com
+    password: liker007   # token generated from mail.163.com
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true # enable auth verification
+          socketFactory.class: javax.net.ssl.SSLSocketFactory # Socket factory for SSL
+          starttls:
+            enable: true # Encrypted communication
+            required: true # Require encrypted communication
+            
+  jpa: 
+    database: mysql
+    show-sql: true
+    hibernate: 
+      ddl-auto: update
+    properties:
+      hibernate: 
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        
+  profiles:  
+    active: dev
+  
+    
+---
+spring:
+  profiles: dev
+
+  mail: # JavaMailSender config
+    maillink: http://localhost:8088/securityuser/confirmed/
+    loginlink: http://localhost:4200/login
+
+  #数据库连接配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://106.54.194.33:3306/smc?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: admin
+
+server:
+  port: 8751
+
+# a日志设置配置信息
+logging:
+  config: classpath:logback-spring.xml
+      
+#eureka settings
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    #    prefer-ip-address: true
+    #    hostname: localhost
+    #    instance-id: 127.0.0.1:${server.port}
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+
+---
+spring:
+  profiles: prod
+
+  mail: # JavaMailSender config
+    maillink: http://106.54.194.33:8088/securityuser/confirmed/
+    loginlink: http://106.54.194.33:4200/login
+
+  #数据库连接配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://106.54.194.33:3306/smc?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: admin
+    
+server:
+  port: 8089
+
+# a日志设置配置信息
+logging:
+  config: classpath:logback-prod.xm
+
+#eureka settings     
+eureka:
+  client:
+    service-url:
+      defaultZone: http://106.54.194.33:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    #    prefer-ip-address: false
+    #    hostname: 106.54.194.33
+    #    instance-id: 106.54.194.33:${server.port}
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
