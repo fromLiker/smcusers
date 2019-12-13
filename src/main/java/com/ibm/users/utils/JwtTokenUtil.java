@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -70,7 +71,9 @@ public class JwtTokenUtil implements Serializable {
           return expireDate.before(new Date());
       }else{
     	  // a原来token过期
-          return issueDate.before(lastupDate);
+    	  Date issueDateTen = new Date(issueDate.getTime() + 3000);//3秒后的时间
+    	  System.out.println(issueDateTen+">>>>"+lastupDate);
+          return issueDateTen.before(lastupDate);
       }
   }
 
