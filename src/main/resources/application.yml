@@ -50,8 +50,8 @@ server:
   port: 8751
 
 # a日志设置配置信息
-logging:
-  config: classpath:logback-spring.xml
+# logging:
+#   config: classpath:logback-spring.xml
       
 #eureka settings
 eureka:
@@ -86,8 +86,8 @@ server:
   port: 8751
 
 # a日志设置配置信息
-logging:
-  config: classpath:logback-prod.xm
+# logging:
+#   config: classpath:logback-prod.xm
 
 #eureka settings     
 eureka:
