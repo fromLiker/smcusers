@@ -19,27 +19,27 @@ public class UsersApplicationTests {
 //	void contextLoads() {
 //	}
 	
-	private static Logger logger = LoggerFactory.getLogger(UsersApplicationTests.class);
+	// private static Logger logger = LoggerFactory.getLogger(UsersApplicationTests.class);
 	
-	@Autowired
-	private UsersService usersService;
+	// @Autowired
+	// private UsersService usersService;
 	
-	@Test
-	public void userLogin(){
-		try {
-			String username = "liker";
-			String password = "111111";
-			System.out.println("***********login successed");
-			Userinfolist users = usersService.getUserByUsernameAndPassword(username, password);
-	    	System.out.println("***********login successed");
-		  	System.out.println("1*****1******" + users.getEmail());
-		    System.out.println("2*****2******" + users.getPassword());
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("***********login failed");
-			logger.info("***********login error");
-		}
-	}
+	// @Test
+	// public void userLogin(){
+	// 	try {
+	// 		String username = "liker";
+	// 		String password = "111111";
+	// 		System.out.println("***********login successed");
+	// 		Userinfolist users = usersService.getUserByUsernameAndPassword(username, password);
+	//     	System.out.println("***********login successed");
+	// 	  	System.out.println("1*****1******" + users.getEmail());
+	// 	    System.out.println("2*****2******" + users.getPassword());
+	// 	} catch (Exception e) {
+	// 		e.printStackTrace();
+	// 		System.out.println("***********login failed");
+	// 		logger.info("***********login error");
+	// 	}
+	// }
 
 	// @Autowired
 	// private UserRepository userRepository;
