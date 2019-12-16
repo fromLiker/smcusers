@@ -8,4 +8,4 @@ ENV PROJECT_ARTIFACTID="smcusers" PROJECT_VERSION="0.0.1-SNAPSHOT"
 COPY target/$PROJECT_ARTIFACTID-$PROJECT_VERSION.jar /smcusers/users.jar
 EXPOSE 8751
 # ENTRYPOINT ["java", "-jar", "/smcusers/users.jar"]
-ENTRYPOINT ["java","-Xms200m","-Xmx300m","-jar","/smcusers/users.jar"]
+ENTRYPOINT ["java","-Xms400m","-Xmx500m","-jar","/smcusers/users.jar"]
