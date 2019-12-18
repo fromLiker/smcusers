@@ -32,7 +32,7 @@ pipeline {
           sh 'docker image build -t ${DOCKERHUBNAME}/users .'
           // sh 'docker push ${DOCKERHUBNAME}/users'
           // sh 'docker run -d -p 8751:8751 --network smc-net --name smcusers ${DOCKERHUBNAME}/users'
-          sh 'docker run -d -p 8751:8751 --memory=600M --name smcusers ${DOCKERHUBNAME}/users'
+          sh 'docker run -d -p 8751:8751 --memory=600M --network smc-net --name SMC-Users ${DOCKERHUBNAME}/users'
         }
       }
     }
