@@ -20,14 +20,14 @@ pipeline {
       agent any
       steps {
         script {
-          def REMOVE_FLAG = sh(returnStdout: true, script: "docker container ls -q --filter name=.*SMC-Users.*") != ""
-          echo "REMOVE_FLAG: ${REMOVE_FLAG}"
-          if(REMOVE_FLAG){
+          def REMOVE_FLAG_C = sh(returnStdout: true, script: "docker container ls -q --filter name=.*SMC-Users.*") != ""
+          echo "REMOVE_FLAG_C: ${REMOVE_FLAG_C}"
+          if(REMOVE_FLAG_C){
             sh 'docker container rm -f $(docker container ls -q --filter name=.*SMC-Users.*)'
           }
-          def REMOVE_FLAG = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/users*") != ""
-          echo "REMOVE_FLAG: ${REMOVE_FLAG}"
-          if(REMOVE_FLAG){
+          def REMOVE_FLAG_I = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/users*") != ""
+          echo "REMOVE_FLAG_I: ${REMOVE_FLAG_I}"
+          if(REMOVE_FLAG_I){
             sh 'docker image rm -f $(docker image ls -q *${DOCKERHUBNAME}/users*)'
           }
         }
