@@ -20,6 +20,11 @@ pipeline {
       agent any
       steps {
         script {
+          def REMOVE_FLAG = sh(returnStdout: true, script: "docker container ls -q --filter name=.*SMC-Users.*") != ""
+          echo "REMOVE_FLAG: ${REMOVE_FLAG}"
+          if(REMOVE_FLAG){
+            sh 'docker container rm -f $(docker container ls -q --filter name=.*SMC-Users.*)'
+          }
           def REMOVE_FLAG = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/users*") != ""
           echo "REMOVE_FLAG: ${REMOVE_FLAG}"
           if(REMOVE_FLAG){
@@ -28,10 +33,9 @@ pipeline {
         }
 
         withCredentials([usernamePassword(credentialsId: 'liker163ID', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-          // sh 'docker login -u $USERNAME -p $PASSWORD'
+          sh 'docker login -u $USERNAME -p $PASSWORD'
           sh 'docker image build -t ${DOCKERHUBNAME}/users .'
-          // sh 'docker push ${DOCKERHUBNAME}/users'
-          // sh 'docker run -d -p 8751:8751 --network smc-net --name smcusers ${DOCKERHUBNAME}/users'
+          sh 'docker push ${DOCKERHUBNAME}/users'
           sh 'docker run -d -p 8751:8751 --memory=600M --network smc-net --name SMC-Users ${DOCKERHUBNAME}/users'
         }
       }
