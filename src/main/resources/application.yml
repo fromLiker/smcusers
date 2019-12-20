@@ -37,7 +37,7 @@ spring:
 
   mail: # JavaMailSender config
     maillink: http://localhost:8888/smcuser/confirmed/
-    loginlink: http://localhost:4200/login
+    loginlink: http://localhost:4200
 
   #数据库连接配置
   datasource:
@@ -73,7 +73,7 @@ spring:
 
   mail: # JavaMailSender config
     maillink: http://106.54.194.33:8888/smcuser/confirmed/
-    loginlink: http://106.54.194.33:4200/login
+    loginlink: http://106.54.194.33:4200
 
   #数据库连接配置
   datasource:
