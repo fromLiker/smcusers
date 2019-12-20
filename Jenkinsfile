@@ -25,17 +25,17 @@ pipeline {
           if(REMOVE_FLAG_C){
             sh 'docker container rm -f $(docker container ls -q --filter name=.*SMC-Users.*)'
           }
-          def REMOVE_FLAG_I = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/users*") != ""
-          echo "REMOVE_FLAG_I: ${REMOVE_FLAG_I}"
-          if(REMOVE_FLAG_I){
+          def REMOVE_FLAG = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/users*") != ""
+          echo "REMOVE_FLAG: ${REMOVE_FLAG}"
+          if(REMOVE_FLAG){
             sh 'docker image rm -f $(docker image ls -q *${DOCKERHUBNAME}/users*)'
           }
         }
 
         withCredentials([usernamePassword(credentialsId: 'liker163ID', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-          sh 'docker login -u $USERNAME -p $PASSWORD'
+          // sh 'docker login -u $USERNAME -p $PASSWORD'
           sh 'docker image build -t ${DOCKERHUBNAME}/users .'
-          sh 'docker push ${DOCKERHUBNAME}/users'
+          // sh 'docker push ${DOCKERHUBNAME}/users'
           sh 'docker run -d -p 8751:8751 --memory=600M --network smc-net --name SMC-Users ${DOCKERHUBNAME}/users'
         }
       }
